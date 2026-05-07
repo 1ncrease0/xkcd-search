@@ -1,0 +1,16 @@
+{{define "admin_login.html"}}
+<div class="admin-login">
+    <h2>Вход в админку</h2>
+    <form method="post" action="/admin/login"
+          hx-post="/admin/login"
+          hx-target="#results"
+          hx-swap="innerHTML">
+        <input type="text" name="username" placeholder="Логин" autocomplete="username">
+        <input type="password" name="password" placeholder="Пароль" autocomplete="current-password">
+        <button type="submit">Войти</button>
+    </form>
+    {{if .Error}}
+    <p class="error">{{.Error}}</p>
+    {{end}}
+</div>
+{{end}}

@@ -1,0 +1,17 @@
+{{define "results.html"}}
+<p>Найдено: {{len .Search.Comics}}</p>
+<div class="comic-list">
+    {{range .Search.Comics}}
+    <article>
+        <a class="comic-card" href="/preview?id={{.ID}}&u={{urlquery .URL}}"
+           hx-get="/preview?id={{.ID}}&u={{urlquery .URL}}"
+           hx-target="#results"
+           hx-swap="innerHTML"
+           hx-push-url="true">
+            <img src="{{.URL}}" alt="Комикс #{{.ID}}" loading="lazy">
+            <p class="comic-id">#{{.ID}}</p>
+        </a>
+    </article>
+    {{end}}
+</div>
+{{end}}

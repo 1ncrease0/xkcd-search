@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package search;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/1ncrease0/xkcd-search/proto/search";
+
+service Search {
+  rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Search(SearchRequest) returns (search.SearchReply) {}
+  rpc ISearch(SearchRequest) returns (search.SearchReply) {}
+}
+
+message SearchRequest {
+  string phrase = 1;
+  int64 limit = 2;
+}
+
+message SearchReply {
+  repeated Comics comics = 1;
+}
+
+message Comics {
+  int64 id = 1;
+  string url = 2;
+}

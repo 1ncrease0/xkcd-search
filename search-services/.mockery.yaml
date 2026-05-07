@@ -1,0 +1,57 @@
+with-expecter: true
+disable-version-string: true
+resolve-type-alias: false
+issue-845-fix: true
+outpkg: mocks
+filename: "{{.InterfaceName | snakecase}}.go"
+
+packages:
+  github.com/1ncrease0/xkcd-search/update/core:
+    config:
+      dir: update/core/mocks
+    interfaces:
+      DB: {}
+      XKCD: {}
+      Words: {}
+      UpdateNotifier: {}
+      Updater:
+        config:
+          dir: update/adapters/grpc/mocks
+  github.com/1ncrease0/xkcd-search/search/core:
+    config:
+      dir: search/core/mocks
+    interfaces:
+      DB: {}
+      Words: {}
+      Searcher:
+        config:
+          dir: search/adapters/grpc/mocks
+
+  github.com/1ncrease0/xkcd-search/api/core:
+    config:
+      dir: api/adapters/rest/mocks
+    interfaces:
+      Pinger: {}
+      Updater: {}
+      Searcher: {}
+  github.com/1ncrease0/xkcd-search/api/adapters/rest:
+    config:
+      dir: api/adapters/rest/mocks
+    interfaces:
+      Authenticator: {}
+
+  github.com/1ncrease0/xkcd-search/proto/search:
+    config:
+      dir: api/adapters/search/mocks
+    interfaces:
+      SearchClient: {}
+  github.com/1ncrease0/xkcd-search/proto/update:
+    config:
+      dir: api/adapters/update/mocks
+    interfaces:
+      UpdateClient: {}
+  github.com/1ncrease0/xkcd-search/proto/words:
+    config:
+      dir: api/adapters/words/mocks
+    interfaces:
+      WordsClient: {}

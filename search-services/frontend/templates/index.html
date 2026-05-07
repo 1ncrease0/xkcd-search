@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="htmx-config" content='{"refreshOnHistoryMiss":true}'>
+    <meta name="color-scheme" content="dark">
+    <title>XKCD Search</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+<header>
+    <a href="/">XKCD Search</a>
+    <nav>
+        <form action="/search" method="get"
+              hx-get="/search"
+              hx-target="#results"
+              hx-swap="innerHTML"
+              hx-push-url="true">
+            <input type="search" name="phrase" placeholder="Поиск комиксов…" autocomplete="off">
+            <select name="limit">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>
+            <button type="submit">Найти</button>
+        </form>
+    </nav>
+    <a class="admin-link"
+       href="/admin"
+       hx-get="/admin"
+       hx-target="#results"
+       hx-swap="innerHTML"
+       hx-push-url="true"
+       title="Админка">⚙</a>
+</header>
+<main>
+    <div id="results">
+        {{template "main_inner.html" .}}
+    </div>
+</main>
+<footer>
+    <p>xkcd comic search</p>
+</footer>
+</body>
+</html>

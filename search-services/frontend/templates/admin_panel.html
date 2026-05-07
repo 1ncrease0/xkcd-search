@@ -1,0 +1,40 @@
+{{define "admin_panel.html"}}
+<div class="admin-panel">
+    <section class="admin-region admin-region-actions" aria-label="Действия">
+        <div class="admin-actions">
+            <button hx-post="/admin/update" hx-target="#results" hx-swap="innerHTML" hx-sync="this:drop">Update</button>
+            <button hx-delete="/admin/drop" hx-target="#results" hx-swap="innerHTML" hx-sync="this:drop" hx-confirm="Точно очистить базу?">Drop</button>
+        </div>
+        {{if .Error}}
+        <p class="error admin-flash">{{.Error}}</p>
+        {{end}}
+    </section>
+    <section class="admin-region admin-region-jobstatus" aria-label="Статус update">
+        <h3>Статус</h3>
+        <div id="admin-job-status"
+             hx-get="/admin/partials/job-status"
+             hx-trigger="every 1s"
+             hx-swap="innerHTML">
+            {{template "admin_job_status_inner" .Admin}}
+        </div>
+    </section>
+    <section class="admin-region admin-region-stats" aria-label="Статистика">
+        <h3>Статистика БД</h3>
+        <div id="admin-stats"
+             hx-get="/admin/partials/stats"
+             hx-trigger="every 3s"
+             hx-swap="innerHTML">
+            {{template "admin_stats_inner" .Admin}}
+        </div>
+    </section>
+    <section class="admin-region admin-region-ping" aria-label="Ping">
+        <h3>Ping сервисов</h3>
+        <div id="admin-ping"
+             hx-get="/admin/partials/ping"
+             hx-trigger="every 3s"
+             hx-swap="innerHTML">
+            {{template "admin_ping_inner" .Admin}}
+        </div>
+    </section>
+</div>
+{{end}}

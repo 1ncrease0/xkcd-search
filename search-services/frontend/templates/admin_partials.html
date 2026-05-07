@@ -1,0 +1,36 @@
+{{define "admin_stats_inner"}}
+{{if .Stats}}
+<dl class="admin-stats">
+    <div><dt>Всего слов</dt><dd>{{.Stats.WordsTotal}}</dd></div>
+    <div><dt>Уникальных слов</dt><dd>{{.Stats.WordsUnique}}</dd></div>
+    <div><dt>Загружено комиксов</dt><dd>{{.Stats.ComicsFetched}}</dd></div>
+    <div><dt>Всего комиксов</dt><dd>{{.Stats.ComicsTotal}}</dd></div>
+</dl>
+{{else}}
+<p class="admin-partial-empty">—</p>
+{{end}}
+{{end}}
+
+{{define "admin_ping_inner"}}
+{{if .Ping}}
+<ul class="admin-ping">
+    {{range $name, $st := .Ping}}
+    <li><span class="admin-ping-name">{{$name}}</span> <span class="admin-ping-st">{{$st}}</span></li>
+    {{end}}
+</ul>
+{{else}}
+<p class="admin-partial-empty">—</p>
+{{end}}
+{{end}}
+
+{{define "admin_partial_error"}}
+<p class="error">{{.}}</p>
+{{end}}
+
+{{define "admin_job_status_inner"}}
+{{if .JobStatus}}
+<p class="admin-job-status admin-job-status--{{.JobStatus}}">{{.JobStatus}}</p>
+{{else}}
+<p class="admin-partial-empty">—</p>
+{{end}}
+{{end}}

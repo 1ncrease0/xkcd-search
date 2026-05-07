@@ -1,0 +1,11 @@
+log_level: DEBUG
+update_address: ":8082"
+words_address: "localhost:8081"
+db_address: "postgres://postgres:password@localhost:5432/postgres"
+xkcd:
+  url: https://xkcd.com
+  concurrency: 10
+  timeout: 10s
+nats:
+  address: "nats://localhost:4222"
+  update_topic: "xkcd.db.updated"

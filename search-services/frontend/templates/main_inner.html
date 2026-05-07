@@ -1,0 +1,17 @@
+{{define "main_inner.html"}}
+{{if .Preview}}
+    {{template "preview.html" .Preview}}
+{{else if .Admin}}
+    {{if or .Admin.Stats .Admin.Ping .Admin.JobStatus}}
+        {{template "admin_panel.html" .}}
+    {{else}}
+        {{template "admin_login.html" .}}
+    {{end}}
+{{else if .Error}}
+    <p class="error">{{.Error}}</p>
+{{else if .Search}}
+    {{template "results.html" .}}
+{{else}}
+    {{template "splash.html"}}
+{{end}}
+{{end}}
